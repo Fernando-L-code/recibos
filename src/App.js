@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
+import LoginForm from './components/LoginForm';
+
+function App (){
+
+  const adminUser={
+     user: "Tester1",
+     password:"123"
+    }
+
+    const [user,setUser] = useState({username:""});
+    const [error,setError] = useState("");
+
+    const Login = details=>{
+
+      if(details.username == adminUser.user && details.password == adminUser.password){
+        setUser({
+          username:details.username,
+        })
+      }else{
+        alert("details dont match");        
+      }
+    }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {(user.username !== "")?(
+            <div className='welcome'>
+
+              <h2>Welcome!!, <span>{user.username}</span> </h2>
+              <button>Logout</button>
+            </div>     
+          ):(
+            <LoginForm Login={Login} error={error}/>
+            )
+
+        } 
     </div>
   );
 }
