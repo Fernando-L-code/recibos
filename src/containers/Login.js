@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import LoginForm from './components/LoginForm';
+import LoginForm from '../components/LoginForm';
 
-function App (){
+const  Login =()=> {
 
   const adminUser={
      user: "Tester1",
@@ -22,13 +22,18 @@ function App (){
         alert("details dont match");        
       }
     }
+
+    const Logout=()=>{
+      setUser({username:""})
+    }
+
   return (
     <div className="App">
         {(user.username !== "")?(
             <div className='welcome'>
 
               <h2>Welcome!!, <span>{user.username}</span> </h2>
-              <button>Logout</button>
+              <button onClick={Logout}>Logout</button>
             </div>     
           ):(
             <LoginForm Login={Login} error={error}/>
@@ -39,4 +44,4 @@ function App (){
   );
 }
 
-export default App;
+export default Login;

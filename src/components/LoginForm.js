@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function LoginForm ({Login,error})  {
+const LoginForm =({Login,error})=>  {
     const [details,setDetails] =useState({username: "",password: ""});
 
     const submitHandler = e =>{
@@ -11,7 +11,10 @@ function LoginForm ({Login,error})  {
         <form onSubmit={submitHandler}>
             <div className='form_login'>
                 <h2>Login</h2>
-                {/*Error*/}
+                {(error !=="")?
+                    (<div className='error'>{error}</div>)
+                    :""
+                }
                 <div className='form-group'>
                     <label htmlFor='usuario'>Usuario:</label>
                     <input type="text" name="usuario" id="usuario" 
